@@ -1,0 +1,29 @@
+SELECT * FROM departamentorrhh.asistencia;
+INSERT INTO `departamentorrhh`.`asistencia` (`id_asistencia`, `asis_horaentrada`, `asis_fecha`, `asis_cargo`, `asis_horasalida`, `asis_observacion`) VALUES ('1', '12:30', '2023-11-24', 'docente', '22:30', 'ninguna');
+INSERT INTO `departamentorrhh`.`asistencia` (`id_asistencia`, `asis_horaentrada`, `asis_fecha`, `asis_cargo`, `asis_horasalida`, `asis_observacion`) VALUES ('2', '10:30', '2023-10-06', 'docente', '22:30', 'ninguna');
+INSERT INTO `departamentorrhh`.`asistencia` (`id_asistencia`, `asis_horaentrada`, `asis_fecha`, `asis_cargo`, `asis_horasalida`, `asis_observacion`) VALUES ('3', '11:30', '2023-09-11', 'docente', '22:30', 'ninguna');
+
+SELECT * FROM departamentorrhh.capacitaciones;
+INSERT INTO `departamentorrhh`.`capacitaciones` (`id_capacitaciones`, `cap_nombrevento`, `cap_tipo`, `cap_auspiciante`, `cap_fechainicio`, `cap_institucion`, `cap_fechafinal`, `cap_duracionhoras`, `cap_tipocertificado`) VALUES ('1', 'capcitacion de programacion', 'avanzado', 'empresa', '2023-12-25', 'I.N.T', '2024-01-01', '8', 'avanzado');
+INSERT INTO `departamentorrhh`.`capacitaciones` (`id_capacitaciones`, `cap_nombrevento`, `cap_tipo`, `cap_auspiciante`, `cap_fechainicio`, `cap_institucion`, `cap_fechafinal`, `cap_duracionhoras`, `cap_tipocertificado`) VALUES ('2', 'Conferencias sobre nuevas tecnologías', 'leve', 'educativa', '2023-10-15', 'I.N.T', '2024-02-11', '5', 'leve');
+INSERT INTO `departamentorrhh`.`capacitaciones` (`id_capacitaciones`, `cap_nombrevento`, `cap_tipo`, `cap_auspiciante`, `cap_fechainicio`, `cap_institucion`, `cap_fechafinal`, `cap_duracionhoras`, `cap_tipocertificado`) VALUES ('3', 'Eventos de networking de la informática', 'profecional', 'empresa', '2023-12-12', 'I.N.T', '2024-12-12', '10', 'profecional');
+
+SELECT * FROM departamentorrhh.capasidades_especiales;
+INSERT INTO `departamentorrhh`.`capasidades_especiales` (`id_capasidadesespeciales`, `cap_tipoenfermedad`, `cap_tiporelacion`, `cap_nroconadis`, `cap_certificado_enfermedad`) VALUES ('1', 'visual', 'perdida parcial', '1521236549', 'intelectual');
+INSERT INTO `departamentorrhh`.`capasidades_especiales` (`id_capasidadesespeciales`, `cap_tipoenfermedad`, `cap_tiporelacion`, `cap_nroconadis`, `cap_certificado_enfermedad`) VALUES ('2', 'transtorno de aprendisaje', 'habilidades academicas', '1157329973', 'intelectual');
+INSERT INTO `departamentorrhh`.`capasidades_especiales` (`id_capasidadesespeciales`, `cap_tipoenfermedad`, `cap_tiporelacion`, `cap_nroconadis`, `cap_certificado_enfermedad`) VALUES ('3', 'movilidad reducida', 'coordinar movimientos', '1756183493', 'fisica');
+
+SELECT * FROM departamentorrhh.contactoemergencia;
+INSERT INTO `departamentorrhh`.`contactoemergencia` (`id_contactoemergencia`, `cont_nombres`, `cont_apellidos`, `cont_telefono`) VALUES ('1', 'Yulisa', 'Cando', '0931675281');
+INSERT INTO `departamentorrhh`.`contactoemergencia` (`id_contactoemergencia`, `cont_nombres`, `cont_apellidos`, `cont_telefono`) VALUES ('2', 'Camilo', 'Cacuango', '0921346255');
+INSERT INTO `departamentorrhh`.`contactoemergencia` (`id_contactoemergencia`, `cont_nombres`, `cont_apellidos`, `cont_telefono`) VALUES ('3', 'Andrea', 'Maldonado', '0917722998');
+
+SELECT * FROM departamentorrhh.conyugue;
+INSERT INTO `departamentorrhh`.`conyugue` (`id_conyugue`, `cony_nombres`, `cony_apellidos`, `cony_tiporelacion`) VALUES ('1', 'Leonardo', 'Angamarca', 'hermano');
+INSERT INTO `departamentorrhh`.`conyugue` (`id_conyugue`, `cony_nombres`, `cony_apellidos`, `cony_tiporelacion`) VALUES ('2', 'Luis', 'Quezada', 'primo');
+INSERT INTO `departamentorrhh`.`conyugue` (`id_conyugue`, `cony_nombres`, `cony_apellidos`, `cony_tiporelacion`) VALUES ('3', 'Diana', 'Cevallos', 'hermana');
+
+SELECT * FROM departamentorrhh.descendientes;
+INSERT INTO `departamentorrhh`.`descendientes` (`id_descendientes`, `des_nombres`, `des_apellidos`, `des_nivelinstitucional`) VALUES ('1', 'David', 'Perez', 'universidad');
+INSERT INTO `departamentorrhh`.`descendientes` (`id_descendientes`, `des_nombres`, `des_apellidos`, `des_nivelinstitucional`) VALUES ('2', 'Marcelo', 'Mendoza', 'universidad');
+INSERT INTO `departamentorrhh`.`descendientes` (`id_descendientes`, `des_nombres`, `des_apellidos`, `des_nivelinstitucional`) VALUES ('3', 'Carmen', 'Luna', 'universidad');

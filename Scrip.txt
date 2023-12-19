@@ -1,0 +1,369 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema DepartamentoRRHH
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema DepartamentoRRHH
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `DepartamentoRRHH` DEFAULT CHARACTER SET utf8 ;
+USE `DepartamentoRRHH` ;
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`empleado`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`empleado` (
+  `id_dempleado` INT NOT NULL AUTO_INCREMENT,
+  `emp_nombre` VARCHAR(45) NULL,
+  `emp_apellido` VARCHAR(45) NULL,
+  `emp_cedula` VARCHAR(15) NULL,
+  `emp_telefono` VARCHAR(45) NULL,
+  `emp_nacionalidad` VARCHAR(45) NULL,
+  `emp_fechanacimiento` VARCHAR(45) NULL,
+  `emp_direccion` VARCHAR(45) NULL,
+  `emp_calleprincipal` VARCHAR(45) NULL,
+  `emp_No` INT NULL,
+  `emp_callesecundaria` VARCHAR(45) NULL,
+  `emp_referencias` VARCHAR(45) NULL,
+  `emp_CorreoElectronico` VARCHAR(45) NULL,
+  `emp_provincia` VARCHAR(45) NULL,
+  `emp_canton` VARCHAR(45) NULL,
+  `emp_parroquia` VARCHAR(45) NULL,
+  `emp_tiposangre` VARCHAR(45) NULL,
+  `emp_tipogenero` VARCHAR(45) NULL,
+  `emp_tipoetnia` VARCHAR(45) NULL,
+  `emp_declaracionbienes` VARCHAR(45) NULL,
+  `emp_antservpublico` VARCHAR(45) NULL,
+  `emp_usuario` VARCHAR(45) NULL,
+  `emp_tipousuario` VARCHAR(45) NULL,
+  `emp_contraseña` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_dempleado`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`permisos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`permisos` (
+  `id_permisos` INT NOT NULL AUTO_INCREMENT,
+  `per_empleados` VARCHAR(45) NOT NULL,
+  `per_provincia` VARCHAR(45) NOT NULL,
+  `per_horas` TIME NOT NULL,
+  `per_direccionunidad` VARCHAR(45) NOT NULL,
+  `per_fechainicio` DATE NOT NULL,
+  `per_cordicionacionzonal` VARCHAR(45) NOT NULL,
+  `per_regimen` VARCHAR(45) NOT NULL,
+  `per_motivo` VARCHAR(50) NOT NULL,
+  `per_tipomotivo` VARCHAR(45) NOT NULL,
+  `per_otros` VARCHAR(45) NULL,
+  `per_fechafinal` DATE NOT NULL,
+  `per_valordescontar` VARCHAR(45) NOT NULL,
+  `per_observaciones` VARCHAR(45) NOT NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_permisos`),
+  INDEX `fk_permisos_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_permisos_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`informacionbancaria`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`informacionbancaria` (
+  `id_infbancaria` INT NOT NULL AUTO_INCREMENT,
+  `inf_nrocuenta` VARCHAR(45) NULL,
+  `inf_tipocuenta` VARCHAR(45) NULL,
+  `inf_insfinanciera` VARCHAR(45) NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_infbancaria`),
+  INDEX `fk_informacionbancaria_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_informacionbancaria_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`capasidades_especiales`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`capasidades_especiales` (
+  `id_capasidadesespeciales` INT NOT NULL AUTO_INCREMENT,
+  `cap_tipoenfermedad` VARCHAR(45) NULL,
+  `cap_tiporelacion` VARCHAR(45) NULL,
+  `cap_nroconadis` VARCHAR(50) NULL,
+  `cap_certificado_enfermedad` VARCHAR(50) NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_capasidadesespeciales`),
+  INDEX `fk_capasidades_especiales_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_capasidades_especiales_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`rutalaboral`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`rutalaboral` (
+  `id_rutalaboral` INT NOT NULL AUTO_INCREMENT,
+  `ruta_nombre` VARCHAR(45) NULL,
+  `ruta_tipoinstituional` VARCHAR(45) NULL,
+  `ruta_unidadadministrativa` VARCHAR(45) NULL,
+  `ruta_fechaingreso` DATE NULL,
+  `ruta_tipoingreso` VARCHAR(45) NULL,
+  `ruta_demonicacionpuesto` VARCHAR(45) NULL,
+  `ruta_fechasalida` DATE NULL,
+  `ruta_motivosalida` VARCHAR(45) NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_rutalaboral`),
+  INDEX `fk_rutalaboral_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_rutalaboral_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`capacitaciones`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`capacitaciones` (
+  `id_capacitaciones` INT NOT NULL AUTO_INCREMENT,
+  `cap_nombrevento` VARCHAR(45) NULL,
+  `cap_tipo` VARCHAR(45) NULL,
+  `cap_auspiciante` VARCHAR(45) NULL,
+  `cap_fechainicio` DATE NULL,
+  `cap_institucion` VARCHAR(45) NULL,
+  `cap_fechafinal` DATE NULL,
+  `cap_duracionhoras` INT NULL,
+  `cap_tipocertificado` VARCHAR(45) NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_capacitaciones`),
+  INDEX `fk_capacitaciones_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_capacitaciones_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`contactoemergencia`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`contactoemergencia` (
+  `id_contactoemergencia` INT NOT NULL AUTO_INCREMENT,
+  `cont_nombres` VARCHAR(45) NULL,
+  `cont_apellidos` VARCHAR(45) NULL,
+  `cont_telefono` VARCHAR(45) NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_contactoemergencia`),
+  INDEX `fk_contactoemergencia_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_contactoemergencia_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`situacionsenecyt`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`situacionsenecyt` (
+  `id_situacionsenecyt` INT NOT NULL AUTO_INCREMENT,
+  `sist_unidad` VARCHAR(45) NULL,
+  `sist_fechaingreso` DATE NULL,
+  `sist_modalidad` VARCHAR(45) NULL,
+  `sist_grupocupacional` VARCHAR(45) NULL,
+  `sits_puesto` VARCHAR(45) NULL,
+  `sist_fecha salida` DATE NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_situacionsenecyt`),
+  INDEX `fk_situacionsenecyt_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_situacionsenecyt_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`formacionacademica`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`formacionacademica` (
+  `id_formacionacademica` INT NOT NULL AUTO_INCREMENT,
+  `form_nrocertsenecyt` INT NULL,
+  `form_institucioneducativa` VARCHAR(45) NULL,
+  `form_areaconocimiento` VARCHAR(45) NULL,
+  `form_nivelinstruccion` VARCHAR(45) NULL,
+  `form_pais` VARCHAR(45) NULL,
+  `form_añosaprovados` INT NULL,
+  `form_egresado_graduado` VARCHAR(45) NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_formacionacademica`),
+  INDEX `fk_formacionacademica_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_formacionacademica_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`conyugue`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`conyugue` (
+  `id_conyugue` INT NOT NULL AUTO_INCREMENT,
+  `cony_nombres` VARCHAR(45) NULL,
+  `cony_apellidos` VARCHAR(45) NULL,
+  `cony_tiporelacion` VARCHAR(45) NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_conyugue`),
+  INDEX `fk_conyugue_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_conyugue_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`descendientes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`descendientes` (
+  `id_descendientes` INT NOT NULL AUTO_INCREMENT,
+  `des_nombres` VARCHAR(45) NULL,
+  `des_apellidos` VARCHAR(45) NULL,
+  `des_nivelinstitucional` VARCHAR(100) NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_descendientes`),
+  INDEX `fk_descendientes_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_descendientes_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`asistencia`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`asistencia` (
+  `id_asistencia` INT NOT NULL AUTO_INCREMENT,
+  `asis_horaentrada` TIME NULL,
+  `asis_fecha` DATE NULL,
+  `asis_cargo` VARCHAR(45) NULL,
+  `asis_horasalida` TIME NULL,
+  `asis_observacion` VARCHAR(45) NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_asistencia`),
+  INDEX `fk_asistencia_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_asistencia_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`usuario` (
+  `id_usuario` INT NOT NULL AUTO_INCREMENT,
+  `usu_usuario` VARCHAR(100) NULL,
+  `usu_contraseña` VARCHAR(45) NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_usuario`),
+  INDEX `fk_usuario_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_usuario_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`tipo_usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`tipo_usuario` (
+  `id_tipousuario` INT NOT NULL AUTO_INCREMENT,
+  `tip_administrador` VARCHAR(45) NULL,
+  `tip_docente` VARCHAR(45) NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_tipousuario`),
+  INDEX `fk_tipo_usuario_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_tipo_usuario_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`evalicacion_docente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`evalicacion_docente` (
+  `id_evalicaciondocente` INT NOT NULL,
+  `eva_periodoDeEvaluacion` VARCHAR(45) NULL,
+  `eval_NombreInstitucion` VARCHAR(45) NULL,
+  `eval_puntaje` VARCHAR(45) NULL,
+  `eval_calificacion` INT NULL,
+  `eval_observacion` VARCHAR(45) NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_evalicaciondocente`),
+  INDEX `fk_evalicacion_docente_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_evalicacion_docente_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DepartamentoRRHH`.`inclucion_laboral`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DepartamentoRRHH`.`inclucion_laboral` (
+  `id_inclucionlaboral` INT NOT NULL AUTO_INCREMENT,
+  `incl_migrante` VARCHAR(45) NULL,
+  `incl_nacionalidad` VARCHAR(45) NULL,
+  `incl_embarazo` VARCHAR(45) NULL,
+  `incl_mesesDeEmbarazo` VARCHAR(45) NULL,
+  `incl_licencia` VARCHAR(45) NULL,
+  `incl_porcentaje` VARCHAR(45) NULL,
+  `empleado_id_dempleado` INT NOT NULL,
+  PRIMARY KEY (`id_inclucionlaboral`),
+  INDEX `fk_inclucion_laboral_empleado1_idx` (`empleado_id_dempleado` ASC) VISIBLE,
+  CONSTRAINT `fk_inclucion_laboral_empleado1`
+    FOREIGN KEY (`empleado_id_dempleado`)
+    REFERENCES `DepartamentoRRHH`.`empleado` (`id_dempleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
